@@ -15,7 +15,7 @@ export const upsertStreamUser = async (userData) => {
     await streamClient.upsertUser(userData);
     console.log("Stream user upserted successfully:", userData);
   } catch (error) {
-    error("Error upserting Stream user:", error);
+    console.error("Error upserting Stream user:", error);
   }
 };
 
@@ -24,6 +24,6 @@ export const deleteStreamUser = async (userId) => {
     await streamClient.deleteUser(userId);
     console.log("Stream user deleted successfully:", userData);
   } catch (error) {
-    error("Error deleting Stream user:", error);
+    console.error("Error deleting Stream user:", error);
   }
 };
