@@ -1,12 +1,13 @@
-import {Inngest} from "inngest";
+import { Inngest } from "inngest";
 import { connectDB } from "./db.js";
 import User from "../models/User.js";
 
 export const inngest = new Inngest({ id: "codeview" });
 
+// here Clerk Webhook Integration name is named webhook-integration
 const syncUser = inngest.createFunction(
   { id: "sync-user" },
-  { event: "user.created" },
+  { event: "webhook-integration/user.created" },
   async ({ event }) => {
     await connectDB();
 
@@ -24,7 +25,7 @@ const syncUser = inngest.createFunction(
 );
 const deleteUserFromDB = inngest.createFunction(
   { id: "delete-user-from-db" },
-  { event: "user.deleted" },
+  { event: "webhook-integration/user.deleted" },
   async ({ event }) => {
     await connectDB();
 
