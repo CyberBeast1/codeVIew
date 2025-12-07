@@ -1,12 +1,15 @@
-import mongoose from 'mongoose';
-import { ENV } from './env.js';
+import mongoose from "mongoose";
+import { ENV } from "./env.js";
 
 export const connectDB = async () => {
-    try {
-        const conn = await mongoose.connect(ENV.DB_URL);
-        console.log(`MongoDB Connected: ${conn.connection.host}`);
-    } catch (error) {
-        console.error(`Error Connecting MongoDB: ${error.message}`);
-        process.exit(1);
+  try {
+    if (!ENV.DB_URL) {
+      throw new Error("DB_URL is not defined in environment variables");
     }
-}
+    const conn = await mongoose.connect(ENV.DB_URL);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.error(`Error Connecting MongoDB: ${error.message}`);
+    process.exit(1);
+  }
+};
