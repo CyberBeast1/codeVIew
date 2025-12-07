@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import { ENV } from "./lib/env.js";
+import { connectDB } from "./lib/db.js";
 
 const app = express();
 const __dirname = path.resolve();
@@ -18,4 +19,13 @@ if (ENV.NODE_ENV === "production") {
   });
 }
 
-app.listen(3000, () => console.log("Listening at localhost:", ENV.PORT));
+async function startServer() {
+  try {
+    await connectDB();
+    app.listen(3000, () => console.log("Listening at localhost:", ENV.PORT));
+  } catch (error) {
+    console.error(`Failed to start server due to error: ${error.message}`);
+  }
+}
+
+startServer();
