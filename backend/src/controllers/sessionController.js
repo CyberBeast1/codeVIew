@@ -13,21 +13,21 @@ export async function createSession(req, res) {
       });
     }
 
-    const callId = `session_${new Date().now()}_${Math.random()
+    const callId = `session_${Date.now}_${Math.random()
       .toString(36)
-      .substr(7)}`;
+      .substring(7)}`;
 
-    const session = new Session({
+    const session = await Session.create({
       problem,
       difficulty,
       host: userId,
       callId,
     });
 
-    await streamClient.video.call("default", callId),
+    await streamClient.video.call("default", callId).
       getOrCreate({
         data: {
-          created_by: clerkId,
+          created_by_id: clerkId,
           custom: {
             problem,
             difficulty,
@@ -38,13 +38,15 @@ export async function createSession(req, res) {
 
     const channel = chatClient.channel("messaging", callId, {
       name: `${problem} Session`,
-      created_by: clerkId,
+      created_by_id: clerkId,
       members: [clerkId],
     });
 
+    await channel.create();
+
     res
       .status(201)
-      .json({ msg: "session and chat created successfully", session, channel });
+      .json({ msg: "session and chat created successfully", session });
   } catch (error) {
     console.error("Error creating session:", error);
     res
@@ -57,6 +59,7 @@ export async function getActiveSessions(_, res) {
   try {
     const sessions = await Session.find({ status: "active" })
       .populate("host", "name email clerkId profileImage")
+      .populate("participant", "name email clerkId profileImage")
       .sort({ createdAt: -1 })
       .limit(20);
 
