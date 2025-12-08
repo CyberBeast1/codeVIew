@@ -1,0 +1,19 @@
+import { streamClient } from "../lib/stream.js";
+
+export async function getStreamToken(req, res) {
+  try {
+    const token = streamClient.createToken(req.user.clerkId);
+    return res
+      .status(200)
+      .json({
+        token,
+        userId: req.user.clerkId,
+        userName: req.user.name,
+        userImage: req.user.image,
+      });
+  } catch (error) {
+    console.error("Error generating Stream token:", error);
+    return res.status(500).json({ msg: "Internal Server Error - Failed to generate Stream token" });
+    
+  }
+}
