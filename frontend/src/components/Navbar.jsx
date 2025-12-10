@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router";
-import { BookOpenIcon, LayoutDashboardIcon, SparklesIcon } from "lucide-react";
+import { BookOpenIcon, LayoutDashboardIcon, SquareTerminal } from "lucide-react";
 import { UserButton } from "@clerk/clerk-react";
 
 function Navbar() {
@@ -17,8 +17,8 @@ function Navbar() {
           to="/"
           className="group flex items-center gap-3 hover:scale-105 transition-transform duration-200"
         >
-          <div className="size-10 rounded-xl bg-gradient-to-r from-primary via-secondary to-accent flex items-center justify-center shadow-lg ">
-            <SparklesIcon className="size-6 text-white" />
+          <div className="size-10 rounded-xl bg-primary flex items-center justify-center shadow-lg ">
+            <SquareTerminal className="size-6 text-white" />
           </div>
 
           <div className="flex flex-col">

@@ -2,7 +2,7 @@ import {
   ArrowRightIcon,
   Code2Icon,
   CrownIcon,
-  SparklesIcon,
+  ScanEyeIcon,
   UsersIcon,
   ZapIcon,
   LoaderIcon,
@@ -18,7 +18,7 @@ function ActiveSessions({ sessions, isLoading, isUserInSession }) {
         <div className="flex items-center justify-between mb-6">
           {/* TITLE AND ICON */}
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-gradient-to-br from-primary to-secondary rounded-xl">
+            <div className="p-2 bg-secondary rounded-xl">
               <ZapIcon className="size-5" />
             </div>
             <h2 className="text-2xl font-black">Live Sessions</h2>
@@ -95,7 +95,7 @@ function ActiveSessions({ sessions, isLoading, isUserInSession }) {
           ) : (
             <div className="text-center py-16">
               <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl flex items-center justify-center">
-                <SparklesIcon className="w-10 h-10 text-primary/50" />
+                <ScanEyeIcon className="w-10 h-10 text-primary/50" />
               </div>
               <p className="text-lg font-semibold opacity-70 mb-1">No active sessions</p>
               <p className="text-sm opacity-50">Be the first to create one!</p>
