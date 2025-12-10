@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import {
-  SparklesIcon,
+  FlameIcon,
   ArrowRightIcon,
   CheckIcon,
   ZapIcon,
@@ -30,7 +30,7 @@ function HomePage() {
             className="flex items-center gap-3 hover:scale-105 transition-transform duration-200"
           >
             <div className="size-10 rounded-xl bg-gradient-to-br from-accent via-secondary to-primary flex items-center justify-center shadow-lg">
-              <SparklesIcon className="size-6 text-white" />
+              <FlameIcon className="size-6 text-white" />
             </div>
 
             <div className="flex flex-col">
