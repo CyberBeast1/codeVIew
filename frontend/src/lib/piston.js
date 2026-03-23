@@ -1,4 +1,4 @@
-const PISTON_API_URL = "https://emkc.org/api/v2/piston";
+const PISTON_API_URL = import.meta.env.VITE_PISTON_API;
 
 const LANGUAGE_VERSIONS = {
   python: { language: "python", version: "3.10.0" },
