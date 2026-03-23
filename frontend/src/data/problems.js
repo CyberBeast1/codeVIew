@@ -344,8 +344,335 @@ int main() {
 1 2 3 4
 -1 1 0 -3 3`,
   },
-};
 
+  "contains-duplicate": {
+    id: "contains-duplicate",
+    title: "Contains Duplicate",
+    difficulty: "Easy",
+    category: "Array • Hash Set",
+    description: {
+      text: "Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.",
+      notes: ["You must solve this in O(n) time complexity."],
+    },
+    examples: [
+      {
+        input: "nums = [1,2,3,1]",
+        output: "true",
+      },
+      {
+        input: "nums = [1,2,3,4]",
+        output: "false",
+      },
+    ],
+    constraints: ["1 ≤ nums.length ≤ 10⁵", "-10⁹ ≤ nums[i] ≤ 10⁹"],
+    starterCode: {
+      javascript: `const fs = require("fs");
+
+const input = fs.readFileSync(0, "utf8").trim().split("\\n");
+const t = parseInt(input[0], 10);
+
+function containsDuplicate(nums) {
+  // Write your solution here
+}
+
+for (let i = 1; i <= t; i++) {
+  const nums = input[i].trim().split(" ").map(Number);
+  const result = containsDuplicate(nums);
+  console.log(result);
+}`,
+      python: `import sys
+
+def containsDuplicate(nums):
+    pass
+
+data = sys.stdin.read().strip().splitlines()
+t = int(data[0])
+
+for i in range(1, t+1):
+    nums = list(map(int, data[i].split()))
+    print(str(containsDuplicate(nums)).lower())`,
+      java: `import java.io.*;
+import java.util.*;
+
+class Solution {
+    public static boolean containsDuplicate(int[] nums) {
+        return false;
+    }
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+
+        for (int i = 0; i < t; i++) {
+            String[] parts = br.readLine().trim().split("\\\\s+");
+            int[] nums = new int[parts.length];
+            for (int j = 0; j < parts.length; j++) {
+                nums[j] = Integer.parseInt(parts[j]);
+            }
+
+            System.out.println(containsDuplicate(nums));
+        }
+    }
+}`,
+      cpp: `#include <iostream>
+#include <vector>
+#include <unordered_set>
+using namespace std;
+
+bool containsDuplicate(vector<int>& nums) {
+    return false;
+}
+
+int main() {
+    int t;
+    cin >> t;
+    cin.ignore();
+
+    while (t--) {
+        vector<int> nums;
+        string line;
+        getline(cin, line);
+        stringstream ss(line);
+        int x;
+        while (ss >> x) nums.push_back(x);
+
+        cout << (containsDuplicate(nums) ? "true" : "false") << "\\n";
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "true\nfalse",
+      python: "true\nfalse",
+      java: "true\nfalse",
+      cpp: "true\nfalse",
+    },
+    stdin: `2
+1 2 3 1
+1 2 3 4`,
+  },
+  "best-time-to-buy-and-sell-stock": {
+    id: "best-time-to-buy-and-sell-stock",
+    title: "Best Time to Buy and Sell Stock",
+    difficulty: "Easy",
+    category: "Array • Greedy",
+    description: {
+      text: "You are given an array prices where prices[i] is the price of a stock on the ith day. Find the maximum profit you can achieve.",
+      notes: [
+        "You may only complete one transaction.",
+        "If no profit is possible, return 0.",
+      ],
+    },
+    examples: [
+      {
+        input: "prices = [7,1,5,3,6,4]",
+        output: "5",
+      },
+      {
+        input: "prices = [7,6,4,3,1]",
+        output: "0",
+      },
+    ],
+    constraints: ["1 ≤ prices.length ≤ 10⁵", "0 ≤ prices[i] ≤ 10⁴"],
+    starterCode: {
+      javascript: `const fs = require("fs");
+
+const input = fs.readFileSync(0, "utf8").trim().split("\\n");
+const t = parseInt(input[0], 10);
+
+function maxProfit(prices) {
+  // Write your solution here
+}
+
+for (let i = 1; i <= t; i++) {
+  const prices = input[i].trim().split(" ").map(Number);
+  console.log(maxProfit(prices));
+}`,
+      python: `import sys
+
+def maxProfit(prices):
+    pass
+
+data = sys.stdin.read().strip().splitlines()
+t = int(data[0])
+
+for i in range(1, t+1):
+    prices = list(map(int, data[i].split()))
+    print(maxProfit(prices))`,
+      java: `import java.io.*;
+import java.util.*;
+
+class Solution {
+    public static int maxProfit(int[] prices) {
+        return 0;
+    }
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+
+        for (int i = 0; i < t; i++) {
+            String[] parts = br.readLine().trim().split("\\\\s+");
+            int[] prices = new int[parts.length];
+            for (int j = 0; j < parts.length; j++) {
+                prices[j] = Integer.parseInt(parts[j]);
+            }
+
+            System.out.println(maxProfit(prices));
+        }
+    }
+}`,
+      cpp: `#include <iostream>
+#include <vector>
+#include <sstream>
+using namespace std;
+
+int maxProfit(vector<int>& prices) {
+    return 0;
+}
+
+int main() {
+    int t;
+    cin >> t;
+    cin.ignore();
+
+    while (t--) {
+        vector<int> prices;
+        string line;
+        getline(cin, line);
+        stringstream ss(line);
+        int x;
+        while (ss >> x) prices.push_back(x);
+
+        cout << maxProfit(prices) << "\\n";
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "5\n0",
+      python: "5\n0",
+      java: "5\n0",
+      cpp: "5\n0",
+    },
+    stdin: `2
+7 1 5 3 6 4
+7 6 4 3 1`,
+  },
+  "move-zeroes": {
+    id: "move-zeroes",
+    title: "Move Zeroes",
+    difficulty: "Easy",
+    category: "Array • Two Pointers",
+    description: {
+      text: "Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.",
+      notes: ["You must do this in-place without making a copy of the array."],
+    },
+    examples: [
+      {
+        input: "nums = [0,1,0,3,12]",
+        output: "[1,3,12,0,0]",
+      },
+      {
+        input: "nums = [0]",
+        output: "[0]",
+      },
+    ],
+    constraints: ["1 ≤ nums.length ≤ 10⁴", "-2³¹ ≤ nums[i] ≤ 2³¹ - 1"],
+    starterCode: {
+      javascript: `const fs = require("fs");
+
+const input = fs.readFileSync(0, "utf8").trim().split("\\n");
+const t = parseInt(input[0], 10);
+
+function moveZeroes(nums) {
+  // Write your solution here
+  return nums;
+}
+
+for (let i = 1; i <= t; i++) {
+  const nums = input[i].trim().split(" ").map(Number);
+  const result = moveZeroes(nums);
+  console.log(\`[\${result.join(",")}]\`);
+}`,
+      python: `import sys
+
+def moveZeroes(nums):
+    return nums
+
+data = sys.stdin.read().strip().splitlines()
+t = int(data[0])
+
+for i in range(1, t+1):
+    nums = list(map(int, data[i].split()))
+    result = moveZeroes(nums)
+    print("[" + ",".join(map(str, result)) + "]")`,
+      java: `import java.io.*;
+import java.util.*;
+
+class Solution {
+    public static int[] moveZeroes(int[] nums) {
+        return nums;
+    }
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+
+        for (int i = 0; i < t; i++) {
+            String[] parts = br.readLine().trim().split("\\\\s+");
+            int[] nums = new int[parts.length];
+            for (int j = 0; j < parts.length; j++) {
+                nums[j] = Integer.parseInt(parts[j]);
+            }
+
+            int[] res = moveZeroes(nums);
+            System.out.println(Arrays.toString(res));
+        }
+    }
+}`,
+      cpp: `#include <iostream>
+#include <vector>
+#include <sstream>
+using namespace std;
+
+vector<int> moveZeroes(vector<int>& nums) {
+    return nums;
+}
+
+int main() {
+    int t;
+    cin >> t;
+    cin.ignore();
+
+    while (t--) {
+        vector<int> nums;
+        string line;
+        getline(cin, line);
+        stringstream ss(line);
+        int x;
+        while (ss >> x) nums.push_back(x);
+
+        vector<int> res = moveZeroes(nums);
+
+        cout << "[";
+        for (int i = 0; i < res.size(); i++) {
+            cout << res[i];
+            if (i + 1 < res.size()) cout << ",";
+        }
+        cout << "]\\n";
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "[1,3,12,0,0]\n[0]",
+      python: "[1,3,12,0,0]\n[0]",
+      java: "[1, 3, 12, 0, 0]\n[0]",
+      cpp: "[1,3,12,0,0]\n[0]",
+    },
+    stdin: `2
+0 1 0 3 12
+0`,
+  },
+};
 
 export const LANGUAGE_CONFIG = {
   javascript: {

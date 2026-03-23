@@ -20,6 +20,33 @@ app.use("/api/inngest", serve({ client: inngest, functions }));
 app.use("/api/chat", chatRoutes);
 app.use("/api/sessions", sessionRoutes);
 
+app.post("/api/execute", async (req, res) => {
+  try {
+    const pistonURL = `${ENV.PISTON_URL}/execute`;
+
+    const response = await fetch(pistonURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(req.body),
+    });
+
+    const data = await response.json();
+    console.log("Executed: ");
+    console.log(data);
+    
+    
+    res.json(data);
+  } catch (error) {
+    console.error("Execution error:", error);
+    res.status(500).json({
+      error: "Execution failed",
+      msg: error
+    });
+  }
+});
+
 app.get("/health", (req, res) => {
   res.status(200).json({ msg: "Server is up!" });
 });

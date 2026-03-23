@@ -1,7 +1,7 @@
-const PISTON_API_URL = import.meta.env.VITE_PISTON_API;
+import { executeApi } from "../api/execute.js";
 
 const LANGUAGE_VERSIONS = {
-  python: { language: "python", version: "3.10.0" },
+  python: { language: "python", version: "3.9.4" },
   javascript: { language: "javascript", version: "18.15.0" },
   java: { language: "java", version: "15.0.2" },
   cpp: { language: "cpp", version: "15.2.1" },
@@ -14,26 +14,23 @@ export async function runCode(language, code, input) {
       throw new Error(`Unsupported language: ${language}`);
     }
 
-    const response = await fetch(`${PISTON_API_URL}/execute`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        language: langConfig.language,
-        version: langConfig.version,
-        stdin: input,
-        files: [
-          { name: `Main.${getExtension(langConfig.language)}`, content: code },
-        ],
-      }),
+    const response = await executeApi.runCode({
+      language: langConfig.language,
+      version: langConfig.version,
+      stdin: input,
+      files: [
+        {
+          name: `Main.${getExtension(langConfig.language)}`,
+          content: code,
+        },
+      ],
     });
 
-    if (!response.ok) {
-      throw new Error(`Error executing code: ${response.statusText}`);
-    }
+    // if (!response.ok) {
+    //   throw new Error(`Error executing code: ${response.statusText}`);
+    // }
 
-    const result = await response.json();
+    const result = await response;
     const output = result.run.output || "";
     const stderror = result.run.stderr || "";
 
